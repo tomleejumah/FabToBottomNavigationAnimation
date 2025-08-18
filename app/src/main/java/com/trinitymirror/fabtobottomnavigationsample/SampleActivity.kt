@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.trinitymirror.fabtobottomnavigation.FabToBottomNavigationAnim
 import com.trinitymirror.fabtobottomnavigationsample.databinding.ActivitySampleBinding
 
 

@@ -1,9 +1,8 @@
-package com.trinitymirror.fabtobottomnavigationsample.util;
+package com.trinitymirror.fabtobottomnavigation.util;
 
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.content.Context;
-import android.os.Build;
 import android.transition.Transition;
 import android.util.ArrayMap;
 import android.util.Property;

@@ -1,4 +1,4 @@
-package com.trinitymirror.fabtobottomnavigationsample;
+package com.trinitymirror.fabtobottomnavigation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -11,10 +11,10 @@ import android.view.ViewAnimationUtils;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.trinitymirror.fabtobottomnavigationsample.util.AnimUtils;
-import com.trinitymirror.fabtobottomnavigationsample.util.AnimatorPath;
-import com.trinitymirror.fabtobottomnavigationsample.util.PathEvaluator;
-import com.trinitymirror.fabtobottomnavigationsample.util.PathPoint;
+import com.trinitymirror.fabtobottomnavigation.util.AnimUtils;
+import com.trinitymirror.fabtobottomnavigation.util.AnimatorPath;
+import com.trinitymirror.fabtobottomnavigation.util.PathEvaluator;
+import com.trinitymirror.fabtobottomnavigation.util.PathPoint;
 
 public class FabToBottomNavigationAnim {
 
@@ -102,11 +102,7 @@ public class FabToBottomNavigationAnim {
         Animator anim;
 
         // Check if the runtime version is at least Lollipop
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            anim = createCircularRevealLollipop(navigationView);
-        } else {
-            anim = ObjectAnimator.ofFloat(navigationView, "alpha", 0f, 1f);
-        }
+        anim = createCircularRevealLollipop(navigationView);
 
         anim.setDuration(ANIM_CIRCULAR_REVEAL_DURATION);
         anim.setStartDelay(ANIM_CIRCULAR_REVEAL_DELAY);

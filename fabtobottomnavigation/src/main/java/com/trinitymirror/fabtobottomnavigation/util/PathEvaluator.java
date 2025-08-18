@@ -1,4 +1,4 @@
-package com.trinitymirror.fabtobottomnavigationsample.util;
+package com.trinitymirror.fabtobottomnavigation.util;
 
 import android.animation.TypeEvaluator;
 

@@ -1,4 +1,4 @@
-package com.trinitymirror.fabtobottomnavigationsample.util;
+package com.trinitymirror.fabtobottomnavigation.util;
 
 /**
  * A class that holds information about a location and how the path should get to that

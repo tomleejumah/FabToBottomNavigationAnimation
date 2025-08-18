@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.trinitymirror.fabtobottomnavigation.FabToBottomNavigationAnim
+import com.trinitymirror.fabtobottomnavigation.util.BottomNavigationViewBehavior
 import com.trinitymirror.fabtobottomnavigationsample.databinding.ActivityListBinding
-import com.trinitymirror.fabtobottomnavigationsample.util.BottomNavigationViewBehavior
 
 class ListActivity : AppCompatActivity() {
 
@@ -25,15 +26,16 @@ class ListActivity : AppCompatActivity() {
         binding.listNavigation.setOnItemSelectedListener(mOnItemSelectedListener)
 
         val layoutParams = binding.listNavigation.layoutParams as CoordinatorLayout.LayoutParams
-        layoutParams.behavior = BottomNavigationViewBehavior(object : BottomNavigationViewBehavior.Callback {
-            override fun onSlideUp() {
-                anim.hideNavigationView()
-            }
+        layoutParams.behavior =
+            BottomNavigationViewBehavior(object : BottomNavigationViewBehavior.Callback {
+                override fun onSlideUp() {
+                    anim.hideNavigationView()
+                }
 
-            override fun onSlideDown() {
-                anim.hideNavigationView()
-            }
-        })
+                override fun onSlideDown() {
+                    anim.hideNavigationView()
+                }
+            })
 
         binding.list.layoutManager = LinearLayoutManager(this)
         binding.list.adapter = MyAdapter()
