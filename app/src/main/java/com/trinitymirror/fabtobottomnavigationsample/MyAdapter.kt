@@ -1,18 +1,18 @@
 package com.trinitymirror.fabtobottomnavigationsample
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 
 class MyAdapter : RecyclerView.Adapter<MyAdapter.MyHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
 
         return MyHolder(
                 TextView(parent.context)
@@ -31,7 +31,7 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyHolder>() {
         holder.bind(position)
     }
 
-    class MyHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
         fun bind(position: Int) {
 

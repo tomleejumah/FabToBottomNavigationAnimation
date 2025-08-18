@@ -5,14 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.trinitymirror.fabtobottomnavigationsample.util.AnimUtils;
 import com.trinitymirror.fabtobottomnavigationsample.util.AnimatorPath;
 import com.trinitymirror.fabtobottomnavigationsample.util.PathEvaluator;
@@ -124,7 +122,6 @@ public class FabToBottomNavigationAnim {
         return anim;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private static Animator createCircularRevealLollipop(View myView) {
         Animator anim;// get the center for the clipping circle
         int cx = 2 * (myView.getWidth() / 3);
@@ -175,11 +172,7 @@ public class FabToBottomNavigationAnim {
         Animator anim;
 
         // Check if the runtime version is at least Lollipop
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            anim = createReverseCircularRevealLollipop(navigationView);
-        } else {
-            anim = ObjectAnimator.ofFloat(navigationView, "alpha", 1f, 0f);
-        }
+        anim = createReverseCircularRevealLollipop(navigationView);
 
         anim.setDuration(ANIM_REVERSE_CIRCULAR_REVEAL_DURATION);
         anim.addListener(new AnimatorListenerAdapter() {
@@ -191,7 +184,6 @@ public class FabToBottomNavigationAnim {
         return anim;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private static Animator createReverseCircularRevealLollipop(View myView) {
         Animator anim;// get the center for the clipping circle
         int cx = 2 * (myView.getWidth() / 3);

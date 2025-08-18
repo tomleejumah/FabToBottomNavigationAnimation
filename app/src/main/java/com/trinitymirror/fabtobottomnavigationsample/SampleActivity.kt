@@ -1,35 +1,27 @@
 package com.trinitymirror.fabtobottomnavigationsample
 
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import kotlinx.android.synthetic.main.activity_sample.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.trinitymirror.fabtobottomnavigationsample.databinding.ActivitySampleBinding
 
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class SampleActivity : AppCompatActivity() {
 
-    private lateinit var fabView: FloatingActionButton
-    private lateinit var navigationView: BottomNavigationView
-
-    lateinit var anim: FabToBottomNavigationAnim
+    private lateinit var binding: ActivitySampleBinding
+    private lateinit var anim: FabToBottomNavigationAnim
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sample)
+        binding = ActivitySampleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        fabView = fab//createFab()
-        fabView.setOnClickListener(onFabClickListener)
+        binding.fab.setOnClickListener(onFabClickListener)
+        binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        binding.button.setOnClickListener(onButtonClickListener)
 
-        navigationView = navigation//createBottomView()
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        button.setOnClickListener(onButtonClickListener)
-
-        anim = FabToBottomNavigationAnim(fabView, navigationView)
+        anim = FabToBottomNavigationAnim(binding.fab, binding.navigation)
     }
 
     private fun animateFabToBottomNav() {
@@ -43,30 +35,31 @@ class SampleActivity : AppCompatActivity() {
     ///////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
 
-    private val onButtonClickListener: View.OnClickListener = View.OnClickListener {
+    private val onButtonClickListener = View.OnClickListener {
         animateBottomNavToFab()
     }
 
-    private val onFabClickListener: View.OnClickListener = View.OnClickListener {
+    private val onFabClickListener = View.OnClickListener {
         animateFabToBottomNav()
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                message.setText(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                message.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                message.setText(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    binding.message.setText(R.string.title_home)
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    binding.message.setText(R.string.title_dashboard)
+                    true
+                }
+                R.id.navigation_notifications -> {
+                    binding.message.setText(R.string.title_notifications)
+                    true
+                }
+                else -> false
             }
         }
-        false
-    }
-
 }
+

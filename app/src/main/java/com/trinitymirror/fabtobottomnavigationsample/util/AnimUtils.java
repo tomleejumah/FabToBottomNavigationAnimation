@@ -4,14 +4,14 @@ import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.transition.Transition;
 import android.util.ArrayMap;
 import android.util.Property;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+
+import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 
 import java.util.ArrayList;
 
@@ -141,7 +141,6 @@ public class AnimUtils {
      * Interrupting Activity transitions can yield an OperationNotSupportedException when the
      * transition tries to pause the animator. Yikes! We can fix this by wrapping the Animator:
      */
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static class NoPauseAnimator extends Animator {
         private final Animator mAnimator;
         private final ArrayMap<AnimatorListener, AnimatorListener> mListeners =
@@ -295,7 +294,6 @@ public class AnimUtils {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static class TransitionListenerAdapter implements Transition.TransitionListener {
 
         @Override

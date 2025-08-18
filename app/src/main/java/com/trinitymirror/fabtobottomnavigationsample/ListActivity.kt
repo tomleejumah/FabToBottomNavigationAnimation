@@ -1,38 +1,30 @@
 package com.trinitymirror.fabtobottomnavigationsample
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.trinitymirror.fabtobottomnavigationsample.databinding.ActivityListBinding
 import com.trinitymirror.fabtobottomnavigationsample.util.BottomNavigationViewBehavior
-import kotlinx.android.synthetic.main.activity_list.*
 
-
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class ListActivity : AppCompatActivity() {
 
-    private lateinit var fabView: FloatingActionButton
-    private lateinit var navigationView: BottomNavigationView
-
-    lateinit var anim: FabToBottomNavigationAnim
+    private lateinit var binding: ActivityListBinding
+    private lateinit var anim: FabToBottomNavigationAnim
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list)
+        binding = ActivityListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        fabView = list_fab
-        fabView.setOnClickListener(onFabClickListener)
+        binding.listFab.setOnClickListener(onFabClickListener)
 
-        navigationView = list_navigation
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        binding.listNavigation.setOnItemSelectedListener(mOnItemSelectedListener)
 
-        val layoutParams = navigationView.layoutParams as CoordinatorLayout.LayoutParams
+        val layoutParams = binding.listNavigation.layoutParams as CoordinatorLayout.LayoutParams
         layoutParams.behavior = BottomNavigationViewBehavior(object : BottomNavigationViewBehavior.Callback {
             override fun onSlideUp() {
                 anim.hideNavigationView()
@@ -43,40 +35,41 @@ class ListActivity : AppCompatActivity() {
             }
         })
 
-        list.layoutManager = LinearLayoutManager(this)
-        list.adapter = MyAdapter()
+        binding.list.layoutManager = LinearLayoutManager(this)
+        binding.list.adapter = MyAdapter()
 
-        anim = FabToBottomNavigationAnim(fabView, navigationView)
+        anim = FabToBottomNavigationAnim(binding.listFab, binding.listNavigation)
     }
 
     private fun animateFabToBottomNav() {
         anim.showNavigationView()
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////
-
     private val onFabClickListener: View.OnClickListener = View.OnClickListener {
         animateFabToBottomNav()
     }
 
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+
     @SuppressLint("SetTextI18n")
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val mOnItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                list_message.text = "Selected: ${getString(R.string.title_home)}"
-                return@OnNavigationItemSelectedListener true
+                binding.listMessage.text = "Selected: ${getString(R.string.title_home)}"
+                true
             }
             R.id.navigation_dashboard -> {
-                list_message.text = "Selected: ${getString(R.string.title_dashboard)}"
-                return@OnNavigationItemSelectedListener true
+                binding.listMessage.text = "Selected: ${getString(R.string.title_dashboard)}"
+                true
             }
             R.id.navigation_notifications -> {
-                list_message.text = "Selected: ${getString(R.string.title_notifications)}"
-                return@OnNavigationItemSelectedListener true
+                binding.listMessage.text = "Selected: ${getString(R.string.title_notifications)}"
+                true
             }
+            else -> false
         }
-        false
     }
-
 }
+
