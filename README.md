@@ -12,11 +12,11 @@ An Android sample demonstrating how to animate a Floating Action Button (FAB) to
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/RicardoBelchior/FabToBottomNavigationAnimation.git
+   git clone git@github.com:tomleejumah/FabToBottomNavigationAnimation.git
 
     //Add the module in your `settings.gradle`:
     gradle include ':app', ':fabtobottomnavigation'
-    `
+    
     //Then add the dependency in your `app/build.gradle`:
     gradle implementation project(":fabtobottomnavigation")
 
