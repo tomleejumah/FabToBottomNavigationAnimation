@@ -25,14 +25,14 @@ public class FabToBottomNavigationAnim {
     private static final int ANIM_REVERSE_PATH_DELAY = 100;
 
     private final FloatingActionButton fabView;
-    private final BottomNavigationView navigationView;
+    private final View navigationView;
     private float fabMargin;
 
     private AnimatorSet showAnimatorSet;
     private AnimatorSet hideAnimatorSet;
 
     public FabToBottomNavigationAnim(
-            FloatingActionButton fabView, BottomNavigationView navigationView) {
+            FloatingActionButton fabView, View navigationView) {
         this.fabView = fabView;
         this.navigationView = navigationView;
         this.fabMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
@@ -133,7 +133,7 @@ public class FabToBottomNavigationAnim {
     }
 
 
-    private Animator createCurvedPath(final View fabView, BottomNavigationView navigationView) {
+    private Animator createCurvedPath(final View fabView, View navigationView) {
         float fabDestinationX = -navigationView.getWidth() / 3f + fabView.getWidth() / 2;
 
         AnimatorPath path = new AnimatorPath();
@@ -193,7 +193,7 @@ public class FabToBottomNavigationAnim {
         return anim;
     }
 
-    private Animator createReverseCurvedPath(final View fabView, final BottomNavigationView navigationView) {
+    private Animator createReverseCurvedPath(final View fabView, final View navigationView) {
         float fabDestinationX = -navigationView.getWidth() / 3f + fabView.getWidth() / 2;
 
         AnimatorPath path = new AnimatorPath();

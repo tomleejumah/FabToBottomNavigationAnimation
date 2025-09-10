@@ -8,7 +8,7 @@ import androidx.core.view.ViewCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<BottomNavigationView> {
+public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<View> {
 
 
     public interface Callback {
@@ -26,14 +26,14 @@ public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<Bot
 
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
-                                       BottomNavigationView child, @NonNull
+                                       View child, @NonNull
                                                View directTargetChild, @NonNull View target,
                                        int axes, int type) {
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     @Override
-    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull BottomNavigationView child,
+    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child,
                                @NonNull View target, int dxConsumed, int dyConsumed,
                                int dxUnconsumed, int dyUnconsumed,
                                @ViewCompat.NestedScrollType int type) {
@@ -45,7 +45,7 @@ public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<Bot
     }
 
     @Override
-    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull BottomNavigationView child, @NonNull View target, int type) {
+    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View target, int type) {
         super.onStopNestedScroll(coordinatorLayout, child, target, type);
     }
 }
